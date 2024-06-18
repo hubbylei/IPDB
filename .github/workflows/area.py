@@ -6,7 +6,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 # 从环境变量中读取Cloudflare的API相关信息
 ZONE_ID = os.environ.get('CLOUDFLARE_ZONE_ID')
 API_KEY = os.environ.get('CLOUDFLARE_API_TOKEN')
-DOMAIN = ""  # 存储域名的常量
 
 def get_a_records(domain):
     url = f"https://dns.google/resolve?name={domain}&type=A"
@@ -57,7 +56,7 @@ def delete_and_push_dns_records(country_code, ips):
         "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json"
     }
-    params = {"type": "A", "name": f"{country_code}.{DOMAIN}"}
+    params = {"type": "A", "name": f"{country_code}}
 
     try:
         response = requests.get(url, headers=headers, params=params)
