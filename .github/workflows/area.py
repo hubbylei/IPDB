@@ -74,7 +74,7 @@ def delete_and_push_dns_records(country_code, ips):
         try:
             data = {
                 "type": "A",
-                "name": f"{country_code}.{DOMAIN}",
+                "name": f"{country_code}",
                 "content": ip,
                 "ttl": 1,
                 "proxied": False
