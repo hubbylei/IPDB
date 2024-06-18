@@ -56,7 +56,7 @@ def delete_and_push_dns_records(country_code, ips):
         "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json"
     }
-    params = {"type": "A", "name": f"{country_code}}
+    params = {"type": "A", "name": f"{country_code}"}
 
     try:
         response = requests.get(url, headers=headers, params=params)
