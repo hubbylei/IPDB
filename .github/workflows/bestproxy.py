@@ -3,10 +3,11 @@ import requests
 import re
 
 # Get GitHub Secrets from environment variables
-api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
-zone_id = os.environ.get("CLOUDFLARE_ZONE_ID")
+# api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
+# zone_id = os.environ.get("CLOUDFLARE_ZONE_ID")
+api_token = f"ojO5yqqgkgPE6NaxBeMeN3iD1ZhvTTTcQQwSAIGI"
+zone_id = f"86e4bd1c59d0392a1e90990282836a2f"
 name = "bestproxy"
-ipdb_api_url = "https://ipdb.api.030101.xyz/?type=bestproxy"
 
 headers = {
     "Authorization": f"Bearer {api_token}",
@@ -50,10 +51,11 @@ try:
 
     print(f"Successfully deleted records with name {name}, updating DNS records now")
 
-    ipdb_response = requests.get(ipdb_api_url)
-    new_ip_list = ipdb_response.text.strip().split("\n")
+    with open('ip.txt', 'r') as file:
+        lines = file.readlines()
+    # new_ip_list = lines.strip().split("\n")
 
-    for new_ip in new_ip_list:
+    for new_ip in lines:
         create_dns_record(new_ip)
 
     print(f"Successfully updated {name} DNS records")
